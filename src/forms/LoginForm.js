@@ -48,6 +48,7 @@ export default function LoginForm(){
             <TextField
                 id="password"
                 name="password"
+                type="password"
                 fullWidth
                 sx={{mb:2}}
                 label="password"

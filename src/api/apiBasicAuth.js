@@ -12,7 +12,7 @@ export const getUser= async (email, password, cancelToken)=>{
     }else if (response.status === 401){
         error="Invalid Email/Password Combo"
     }else{
-        error = "An Unexpected Errr has Occured. Please Try again Later."
+        error = "An Unexpected Error has Occured. Please Try again Later."
     }
     return {
         error,

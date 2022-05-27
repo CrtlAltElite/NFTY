@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -18,10 +18,18 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { LocalGroceryStoreTwoTone, StorefrontTwoTone } from '@mui/icons-material';
+
+
+
 
 const drawerWidth = 240;
 
-const openedMixin = (theme)=> ({
+const openedMixin = (theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
@@ -50,10 +58,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
-
-interface AppBarProps extends MuiAppBarProps {
-  open?: boolean;
-}
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -94,6 +98,17 @@ export default function MiniDrawer({children}) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -120,11 +135,42 @@ export default function MiniDrawer({children}) {
             <MenuIcon />
           </IconButton>
           <Box sx={{mr:3}}>
-            <img height="45px" className='p2' alt="KanyeBear Logo" src="https://res.cloudinary.com/cae67/image/upload/v1653415677/kanyebear_g0jzgb.png"/>
+            <img height='45px' alt="Kanye Bear Logo" className='p2' src="https://res.cloudinary.com/cae67/image/upload/v1653415677/kanyebear_g0jzgb.png"/>
           </Box>
           <Typography variant="h6" noWrap component="div">
             NFTY
           </Typography>
+        <Box sx={{ flexGrow: 0,  }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">
+                  Logout
+                  </Typography>
+                </MenuItem>
+  
+            </Menu>
+          </Box>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -132,13 +178,16 @@ export default function MiniDrawer({children}) {
         <DrawerHeader>
           Paths of Enlightenment
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === 'rtl' ? <ChevronRightIcon style={{color:"white"}}/> : <ChevronLeftIcon style={{color:"white"}}/>}
           </IconButton>
         </DrawerHeader>
         <Divider />
         <List>
-          {['Homepage', 'Shop'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+          {
+            [{label:'Cart',path:'', icon:<LocalGroceryStoreTwoTone style={{color:'white'}}/>},
+            {label:'Store',path:'', icon:<StorefrontTwoTone style={{color:'white'}}/>}
+          ].map((navItem, index) => (
+            <ListItem key={navItem.label} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -153,9 +202,9 @@ export default function MiniDrawer({children}) {
                     justifyContent: 'center',
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    {navItem.icon}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={navItem.label} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}
@@ -164,7 +213,7 @@ export default function MiniDrawer({children}) {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-                  {children}
+        {children}
       </Box>
     </Box>
   );
