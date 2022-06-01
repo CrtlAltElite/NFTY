@@ -137,7 +137,7 @@ export default function MiniDrawer({children}) {
           <Box sx={{mr:3}}>
             <img height='45px' alt="Kanye Bear Logo" className='p2' src="https://res.cloudinary.com/cae67/image/upload/v1653415677/kanyebear_g0jzgb.png"/>
           </Box>
-          <Typography variant="h6" noWrap component="div">
+          <Typography sx={{ flexGrow: 1}} variant="h6" noWrap component="div">
             NFTY
           </Typography>
         <Box sx={{ flexGrow: 0,  }}>

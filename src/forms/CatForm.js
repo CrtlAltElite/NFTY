@@ -13,7 +13,7 @@ const FormSchema=Yup.object(
 
 
 
-export default function CatForm({ category={id:1, name:"pants"} }){
+export default function CatForm({ category }){
     
     const initialValues={
         name:category?.name ?? '',
