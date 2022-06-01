@@ -9,6 +9,10 @@ import CatForm from './forms/CatForm';
 import ItemForm from './forms/ItemForm';
 import apiCategory from './api/apiCategory';
 import apiItem from './api/apiItem';
+import CategoryBar from './components/CategoryBar';
+import AdminMenu from './components/AdminMenu';
+import AdminSelectItem from './components/AdminSelectItem';
+import ItemBrowser from './components/ItemBrowser';
 
 const my_token="8Qd8cU9Oi44FdJjTwY3_bkI9qwxBBhQo8jWi6je-iqw"
 
@@ -21,10 +25,8 @@ const handleAPITest= async ()=>{
 function App() {
   return (
       <NavBar>
-        <Button color="success" onClick={handleAPITest}>Test API Call</Button>
-        <Error style={{backgroundColor:'cornflowerblue'}}>This is an error Message</Error>
-
-        <LoginForm/>
+        <ItemBrowser/>
+        <AdminMenu/>
       </NavBar>
   );
 }

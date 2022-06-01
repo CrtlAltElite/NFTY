@@ -23,16 +23,7 @@ const FormSchema=Yup.object(
 
 
 
-export default function ItemForm({ item 
-    // =    {id:1,
-    //             name:"item1",
-    //             desc:'my test item',
-    //             category_id:3,
-    //             price:9.99,
-    //             img:'my-image.png'}
-}
-                
-                ){
+export default function ItemForm({ item }){
     
     const initialValues={
         name:item?.name ?? '',
