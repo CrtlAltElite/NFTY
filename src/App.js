@@ -13,6 +13,8 @@ import CategoryBar from './components/CategoryBar';
 import AdminMenu from './components/AdminMenu';
 import AdminSelectItem from './components/AdminSelectItem';
 import ItemBrowser from './components/ItemBrowser';
+import Cart from './components/Cart/Index';
+import Item from './components/Item';
 
 const my_token="8Qd8cU9Oi44FdJjTwY3_bkI9qwxBBhQo8jWi6je-iqw"
 
@@ -25,7 +27,7 @@ const handleAPITest= async ()=>{
 function App() {
   return (
       <NavBar>
-        <ItemBrowser/>
+        <Item/>
         <AdminMenu/>
       </NavBar>
   );
