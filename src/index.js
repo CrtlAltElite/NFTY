@@ -6,11 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import primaryTheme from './themes/primaryTheme';
-
+import primaryThemeDark from './themes/primaryThemeDark'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={primaryTheme}>
+    <ThemeProvider theme={primaryThemeDark}>
       <CssBaseline/>
       <App />
     </ThemeProvider>

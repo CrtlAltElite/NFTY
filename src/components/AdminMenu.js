@@ -22,7 +22,7 @@ export default function AdminMenu() {
       <Backdrop open={open} />
       <SpeedDial
         ariaLabel="Admin Menu"
-        sx={{ position: 'absolute', bottom: 16, right: 16 }}
+        sx={{ position: 'sticky', bottom: 0, right: 20 }}
         icon={<SpeedDialIcon />}
         onClose={handleClose}
         onOpen={handleOpen}

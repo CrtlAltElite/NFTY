@@ -25,7 +25,6 @@ export const themeOptions = {
     overrides: {
       MuiAppBar: {
         colorInherit: {
-          
           color: '#fff',
         },
       },

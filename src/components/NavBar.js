@@ -23,7 +23,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { LocalGroceryStoreTwoTone, StorefrontTwoTone } from '@mui/icons-material';
-
+import ThemeSwitch from './ThemeSwitch'
 
 
 
@@ -209,6 +209,13 @@ export default function MiniDrawer({children}) {
             </ListItem>
           ))}
         </List>
+        {open?
+       <ListItem sx={{position:"absolute", bottom:"0px", alignContent:"center", justifyContent:"center" }}>
+            <ThemeSwitch/>
+       </ListItem>
+       :
+       ''
+        }
         </Box>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
