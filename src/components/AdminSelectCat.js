@@ -5,11 +5,12 @@ import Select from '@mui/material/Select';
 import  MenuItem  from '@mui/material/MenuItem';
 import  Typography  from '@mui/material/Typography';
 import CatForm from '../forms/CatForm';
-
-const categories=[{id:1, name:"Shoes"},{id:2, name:"Pants"},{id:3, name:"Shirts"}]
+import useCategories from '../hooks/useCategories';
+import Error from '../components/Error';
 
 export default function AdminSelectCat() {
     const [cat, setCat] =useState('')
+    const {categories, error} = useCategories();
 
     const handleChange=(event)=>{
         console.log(event.target.value)
@@ -33,13 +34,13 @@ export default function AdminSelectCat() {
                 onChange={(event)=>handleChange(event)}
             >
                 <MenuItem value="default"><em>Select Category To Edit</em></MenuItem>
-                {categories.map(
+                {categories?.map(
                     (category)=>(
                         <MenuItem key={category.id} value={JSON.stringify(category)}>{category.name}</MenuItem>
                     )
                 )}
             </Select>
-
+            <Error>{error}</Error>
         </FormControl>
 
         {cat ? 

@@ -5,8 +5,32 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import AddShoppingCartTwoToneIcon from '@mui/icons-material/AddShoppingCartTwoTone';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
+import useItems from '../hooks/useItems';
+import CircularProgress  from '@mui/material/CircularProgress';
+import Box  from '@mui/material/Box';
+import Error  from './Error';
 
-export default function ItemBrowser() {
+
+export default function ItemBrowser({category_id}) {
+  const {error, items} = useItems(category_id)
+  if (error){
+    return (
+      <Box sx={{display:"flex"}}>
+        <Error>{error}</Error>
+      </Box>
+    )
+  }
+
+  if(!items){
+    return(
+    <Box sx={{display:"flex"}}>
+      <CircularProgress/>
+    </Box>
+    )
+  }
+
+
+
   return (
     <ImageList cols={3}>
 
