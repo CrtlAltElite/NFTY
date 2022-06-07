@@ -11,7 +11,8 @@ const AppContextProvider=({children})=>{
         }
     }
     const [user, _setUser] = useState(getUserFromLS())
-
+    const [alert,setAlert] =useState({})
+  
 
     const setUser = (user)=>{
         localStorage.setItem('user', JSON.stringify(user))
@@ -19,6 +20,8 @@ const AppContextProvider=({children})=>{
     }
 
     const values = {
+        alert,
+        setAlert,
         user,
         setUser
     }

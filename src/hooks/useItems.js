@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react';
 import apiItem from '../api/apiItem';
 import { CancelToken } from 'apisauce';
-import { Source } from '@mui/icons-material';
 
 
 export default function useItems(categoryID=null){

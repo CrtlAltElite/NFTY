@@ -1,8 +1,12 @@
-import React from 'react';
+import {useState} from 'react';
 import * as Yup from "yup";
 import { useFormik } from 'formik';
 import Button from '../components/Button';
 import TextField from '@mui/material/TextField';
+import useCreateCategory from '../hooks/useCreateCategory';
+import useEditCategory from '../hooks/useEditCategory';
+import useDeleteCategory from '../hooks/useDeleteCategory';
+
 
 //Defining our yup validation
 const FormSchema=Yup.object(
@@ -14,19 +18,31 @@ const FormSchema=Yup.object(
 
 
 export default function CatForm({ category }){
-    
+    const [newCat, setNewCat]=useState('')
+    const [editCat, setEditCat]=useState('')
+    const [deleteCat, setDeleteCat]=useState(0)
+
+    useCreateCategory(newCat)
+    useEditCategory(editCat, category?.id)
+    useDeleteCategory(deleteCat)
+
+
     const initialValues={
         name:category?.name ?? '',
     }
     
     const handleSubmit=(values, resetForm)=>{
         if (category){
-            console.log('Editing Cat')
+            setEditCat(values)
         }else{
-            console.log('Creating Cat')
+            setNewCat(values)
         }
         console.log(values)
         resetForm(initialValues)
+    }
+
+    const handleDelete=()=>{
+        setDeleteCat(category?.id)
     }
 
     const formik = useFormik({
@@ -51,7 +67,9 @@ export default function CatForm({ category }){
                 helperText={formik.touched.name && formik.errors.name}            
             />
 
-            <Button type="submit" sx={{width:"100%"}}>{category?"Edit Category":"Create Cat"}</Button>
+            <Button type="submit" sx={{width:"100%", my:1}}>{category?"Edit Category":"Create Cat"}</Button>
+            <Button color="error" onClick={()=>handleDelete()} sx={{width:"100%", my:1}}>Delete</Button>
+
         </form>
     )
 
