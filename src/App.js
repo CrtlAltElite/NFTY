@@ -14,25 +14,25 @@ import AdminMenu from './components/AdminMenu';
 import AdminSelectItem from './components/AdminSelectItem';
 import ItemBrowser from './components/ItemBrowser';
 import AdminSelectCat from './components/AdminSelectCat';
-
+import SnackBar from './components/SnackBar';
 import Cart from './components/Cart/Index';
 import Item from './components/Item';
 
-const my_token="8Qd8cU9Oi44FdJjTwY3_bkI9qwxBBhQo8jWi6je-iqw"
+const my_token="VuZ6xD4QNVpyArgf6s8fV9UCtnHTsgQycZzbGIQDWsc"
 
 
-const handleAPITest= async ()=>{
-  const source = CancelToken.source();
-  const response_object= await apiItem.del(my_token, 6, source.token);
-  console.log(response_object)
-}
+
 
 function App() {
   return (
+    <>
+      <SnackBar/>
       <NavBar>
-        <ItemBrowser/>
+        <LoginForm/>
+        <AdminSelectItem/>
         <AdminMenu/>
       </NavBar>
+    </>
   );
 }
 
