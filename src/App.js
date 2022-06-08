@@ -17,7 +17,7 @@ import AdminSelectCat from './components/AdminSelectCat';
 import SnackBar from './components/SnackBar';
 import Cart from './components/Cart/Index';
 import Item from './components/Item';
-
+import CartPage from './views/CartPage';
 const my_token="VuZ6xD4QNVpyArgf6s8fV9UCtnHTsgQycZzbGIQDWsc"
 
 
@@ -28,9 +28,8 @@ function App() {
     <>
       <SnackBar/>
       <NavBar>
-        <LoginForm/>
-        <AdminSelectItem/>
-        <AdminMenu/>
+        <ItemBrowser/>
+        <CartPage/>
       </NavBar>
     </>
   );
