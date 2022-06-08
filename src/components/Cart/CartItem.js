@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 import CartCard from './CartCard';
 import ChangeCartItemQuanitity from './ChangeCartItemQuanitity';
+import { AppContext } from '../../context/AppContext';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -15,6 +16,15 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function CartItem({item}) {
+    const {cart} = useContext(AppContext)
+
+    useEffect(
+      ()=>{
+        setQty(cart.filter((cartItem)=>cartItem.id===item.id).length)
+      },
+      [cart, item]
+    )
+
 
     const [qty, setQty]=useState(cart.filter((cartItem)=>cartItem.id===item.id).length)
   return (
@@ -48,30 +58,3 @@ export default function CartItem({item}) {
   );
 }
 
-
-const item1={
-    "id":1,
-    "name":"itema",
-    "desc":"itema is good",
-    "price":2.99,
-    "img":"https://res.cloudinary.com/cae67/image/upload/v1651792721/kanye_jvbkns.png",
-    "category_id":1
-  }
-  const item2={
-    "id":2,
-    "name":"itemB",
-    "desc":"itemB is good",
-    "price":12.99,
-    "img":"https://res.cloudinary.com/cae67/image/upload/v1652745758/kyle1_plkclv.png",
-    "category_id":2
-  }
-  const item3={
-    "id":3,
-    "name":"itemC",
-    "desc":"itemC is good",
-    "price":200.00,
-    "img":"https://res.cloudinary.com/cae67/image/upload/v1652982371/cow_gkvuce.jpg",
-    "category_id":1
-  }
-  
-  const cart=[item1, item2, item2, item2, item3, item3]
