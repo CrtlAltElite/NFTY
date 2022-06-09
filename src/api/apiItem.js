@@ -69,7 +69,7 @@ const del = async(token, id, cancelToken)=>{
     return response.ok
 }
 
-export default {
+const apiClient={
     get,
     getItem,
     getByCat,
@@ -77,3 +77,5 @@ export default {
     put,
     del
 }
+
+export default apiClient
