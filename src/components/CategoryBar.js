@@ -47,7 +47,7 @@ export default function CategoryBar({handleClick=()=>{}}) {
                 size="small" 
                 color="primary"  
                 label={cat.name} 
-                onClick={()=>{handleActCat(cat); handleClick()}} />
+                onClick={()=>{handleActCat(cat); handleClick(cat)}} />
           :
             <Chip 
                 variant="outlined" 
@@ -55,7 +55,7 @@ export default function CategoryBar({handleClick=()=>{}}) {
                 color="primary" 
                 key={cat.id} 
                 label={cat.name} 
-                onClick={()=>{handleActCat(cat); handleClick()}} />
+                onClick={()=>{handleActCat(cat); handleClick(cat)}} />
           )) }
     </Stack>
   );

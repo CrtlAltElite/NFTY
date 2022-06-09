@@ -16,20 +16,48 @@ import ItemBrowser from './components/ItemBrowser';
 import AdminSelectCat from './components/AdminSelectCat';
 import SnackBar from './components/SnackBar';
 import Cart from './components/Cart/Index';
-import Item from './components/Item';
 import CartPage from './views/CartPage';
-const my_token="VuZ6xD4QNVpyArgf6s8fV9UCtnHTsgQycZzbGIQDWsc"
-
-
-
+import Login from './views/Login';
+import ShopBrowser from './views/ShopBrowser'
+import Box from '@mui/material/Box'
+import {Route, Routes} from 'react-router-dom'
+import AdminItem from './views/AdminItem'
+import AdminCategory from './views/AdminCategory'
+import {useContext} from 'react'
+import { AppContext } from './context/AppContext';
+import RequireAdmin from './components/RequireAdmin';
+import Logout from './views/Logout';
+import CheckOutSuccess from './components/CheckOutSuccess';
+import Item from './components/Item';
+const HomePage=()=>{return(<h1>Welcome to the Show!</h1>)}
 
 function App() {
+
+  const {user}=useContext(AppContext)
+
   return (
     <>
       <SnackBar/>
       <NavBar>
-        <ItemBrowser/>
-        <CartPage/>
+        <Box sx={{minHeight:'90vh'}}>
+          <Routes>
+            <Route path="/" element={<HomePage/>}/>
+            <Route path="/cart" element={<CartPage/>}/>
+            <Route path="/cart/:canceled" element={<CartPage/>}/>
+            <Route path="/shop" element={<ShopBrowser/>}/>
+            <Route path="/shop/:itemId" element={<Item />}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/logout" element={<Logout/>}/>
+            <Route path="/checkoutsuccess" element={<CheckOutSuccess/>}/>
+            <Route path="/admincat" element={<RequireAdmin redirectTo={'/login'}><AdminCategory/></RequireAdmin>}/>
+            <Route path="/adminitem" element={<RequireAdmin redirectTo={'/login'}><AdminItem/></RequireAdmin> }/>
+
+            
+            
+
+          </Routes>
+        </Box>
+        {user?.is_admin ? <AdminMenu/>:''}
       </NavBar>
     </>
   );

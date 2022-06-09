@@ -18,6 +18,23 @@ const get = async(cancelToken)=>{
     }
 }
 
+const getItem = async(id, cancelToken)=>{
+    let error;
+    let item;
+    const response = await apiClientNoAuth(cancelToken).get(endpoint+'/'+id);
+    if (response.ok){
+        item=response.data
+    }else if(response.status === 404){
+        error= 'Your Item was Not Found'
+    }else{
+        error = "An Unexpected Error has Occured. Please Try again Later."
+    }
+    return{
+        error,
+        item
+    }
+}
+
 
 const getByCat = async(id, cancelToken)=>{
     let error;
@@ -33,6 +50,8 @@ const getByCat = async(id, cancelToken)=>{
         items
     }
 }
+
+
 
 const post = async(token, data, cancelToken)=>{
     const response = await apiClientTokenAuth(token, cancelToken).post(endpoint, data)
@@ -52,6 +71,7 @@ const del = async(token, id, cancelToken)=>{
 
 export default {
     get,
+    getItem,
     getByCat,
     post,
     put,

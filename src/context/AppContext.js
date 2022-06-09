@@ -18,15 +18,15 @@ const AppContextProvider=({children})=>{
             return JSON.parse(cart)
         }
     }
-    const [user, _setUser] = useState(getUserFromLS())
+    const [user, _setUser] = useState(getUserFromLS()??{})
     const [alert,setAlert] =useState({})
     const [cart, dispatch]=useReducer(shopReducer,getCartFromLS()??[])
 
     useEffect(
         ()=>{
-            if (cart.length>0){
+   
                 localStorage.setItem('cart', JSON.stringify(cart))
-            }
+
         },[cart]
     )
 
