@@ -12,7 +12,6 @@ import MuiDrawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Menu from '@mui/material/Menu';
@@ -219,7 +218,7 @@ export default function MiniDrawer({children}) {
             </ListItem>
           ))}
           <ListItem button key={"Social"}>
-              <RegLink href="http://google.com" color="inherit" underline="none" sx={{display:"flex"}}>
+              <RegLink href="/index" color="inherit" underline="none" sx={{display:"flex"}}>
                 <ListItemIcon>
                   <ConnectWithoutContactIcon style={{color:'white'}}/>
                 </ListItemIcon>

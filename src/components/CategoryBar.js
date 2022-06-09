@@ -20,22 +20,22 @@ export default function CategoryBar({handleClick=()=>{}}) {
       }
     }
 
-    if(!categories){
-      return(
-      <Box sx={{display:"flex"}}>
-        <CircularProgress/>
-      </Box>
-      )
-    }
-
+    
   if (error){
-    return (
-      <Box sx={{display:"flex"}}>
+      return (
+        <Box sx={{display:"flex"}}>
         <Error>{error}</Error>
       </Box>
     )
   }
-
+  
+  if(!categories){
+    return(
+    <Box sx={{display:"flex"}}>
+      <CircularProgress/>
+    </Box>
+    )
+  }
 
 
   return (
