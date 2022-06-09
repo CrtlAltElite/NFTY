@@ -2,9 +2,11 @@ import {useEffect, useContext} from 'react'
 import {CancelToken} from 'apisauce'
 import apiItem from '../api/apiItem'
 import { AppContext } from '../context/AppContext'
+import {useNavigate} from 'react-router-dom';
 
 export default function useCreateItem(item) {
     const {user, setAlert} = useContext(AppContext)
+    const navigate = useNavigate()
 
     useEffect(
         ()=>{
@@ -17,6 +19,7 @@ export default function useCreateItem(item) {
                         setAlert({'msg':`Item: ${item.name} Created`, cat:'success'})
                     }else if(response === false && response !== undefined){
                         setAlert({'msg':`Please reauthorize you account`, cat:'warning'})
+                        navigate('/')
                     }
                 })()
             }
